@@ -60,7 +60,7 @@ public class Main implements ActionListener {
         frame1.add(sgpa4);      frame1.add(gpa4);
         frame1.add(cgpa1);      frame1.add(cgpa);
 
-        frame1.add(complete); frame1.add(compute); frame1.add(done);
+        frame1.add(compute); frame1.add(done); frame1.add(complete);
         done.setVisible(false); complete.setVisible(false);
 
         frame2.add(detailsArea);
@@ -94,7 +94,7 @@ public class Main implements ActionListener {
             String c = category.getText();
             int x = Integer.parseInt(age.getText());
             if (x<18){
-                JOptionPane.showMessageDialog(null,"Enter correct age - ");
+                JOptionPane.showMessageDialog(null,"Enter correct age. ");
             }else{
                 Student s = new Student(n,u,a,c,x,g1,g2,g3,g4);
                 list.add(s);

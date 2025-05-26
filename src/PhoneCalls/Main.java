@@ -53,6 +53,7 @@ public class Main {
                         if (val==1) delCallList.add(m);
                     }
                     missedCalls.removeAll(delCallList);
+                    System.out.println("Remaining missed calls : " + missedCalls);
                     break;
             }
 

@@ -17,7 +17,6 @@ public class Student {
         this.gpa4 = gpa4;
     }
 
-    @Override
     public String toString() {
         return "Student{" +
                 "name='" + name + '\'' +

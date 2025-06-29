@@ -1,3 +1,14 @@
+/*
+Create a desktop java application using swings to enable a user to enter student
+information such as name, usn, age, address, sgpa of 4 semesters, category(as combobox).
+a. Perform validations on all the fields. Display appropriate messages in pop up boxes to
+indicate wrong entries.
+b. On clicking of the “compute” button, find the cgpa (Average of sgpas) . On clicking of the
+“done” button, place the student details(name, usn, age, address,cgpa,category) in a collection.
+c. Display the collection in a textarea on the click of a “complete” button.
+Enable / Disable the visibility of “compute” and “done” buttons.
+ */
+
 package Ques9Swing;
 
 import javax.swing.*;
@@ -5,119 +16,115 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-
 public class Main implements ActionListener {
 
     ArrayList<Student> list = new ArrayList<>();
     static JFrame frame1, frame2;
-    JLabel name1, usn1, age1, address1, category1, sgpa1, sgpa2, sgpa3, sgpa4, cgpa1;
-    JTextField name, usn, age, address, category, gpa1, gpa2, gpa3, gpa4, cgpa;
+    JTextField name, usn, age, address, gpa1, gpa2, gpa3, gpa4, cgpa;
+    JComboBox<String> category;
     JTextArea detailsArea;
     JButton compute, done, complete;
+    double totalCGPA = 0;
 
-
-    public Main(){
+    public Main() {
         frame1 = new JFrame("Enter details");
         frame2 = new JFrame("Displaying details");
 
-        name1 = new JLabel("Enter name - ");
-        age1 = new JLabel("Enter age - ");
-        address1 = new JLabel("Enter address - ");
-        usn1 = new JLabel("Enter usn - ");
-        category1= new JLabel("Enter category - ");
-        sgpa1 = new JLabel("Enter SGPA 1 - ");
-        sgpa2 = new JLabel("Enter SGPA 2 - ");
-        sgpa3 = new JLabel("Enter SGPA 3 - ");
-        sgpa4 = new JLabel("Enter SGPA 4 - ");
-        cgpa1 = new JLabel("CGPA computed - ");
+        name = new JTextField();    usn = new JTextField();
+        age = new JTextField();     address = new JTextField();
+        String[] options = new String[]{"GM", "SC", "ST", "OBC", "Others"};
+        category = new JComboBox<>(options);
+        gpa1 = new JTextField();    gpa2 = new JTextField();
+        gpa3 = new JTextField();    gpa4 = new JTextField();
+        cgpa = new JTextField();
+        cgpa.setEditable(false);
 
+        detailsArea = new JTextArea(); //to display the collection
 
-        name = new JTextField(20);
-        age = new JTextField(20);
-        address = new JTextField(20);
-        usn = new JTextField(20);
-        category = new JTextField(20);
-        gpa1 = new JTextField(10);
-        gpa2 = new JTextField(10);
-        gpa3 = new JTextField(10);
-        gpa4 = new JTextField(10);
-        cgpa = new JTextField(10);
-        detailsArea = new JTextArea(100,100); //to display the collection
+        compute = new JButton("COMPUTE");
+        done = new JButton("DONE");
+        complete = new JButton("COMPLETE");
 
-        compute = new JButton("COMPUTE CGPA");
-        done = new JButton("ADD TO COLLECTION");
-        complete= new JButton("PLACE IN TEXTAREA");
+        // Adding labels and corresponding fields
+        frame1.add(new JLabel("Enter name - "));        frame1.add(name);
+        frame1.add(new JLabel("Enter usn - "));         frame1.add(usn);
+        frame1.add(new JLabel("Enter age - "));         frame1.add(age);
+        frame1.add(new JLabel("Enter address - "));     frame1.add(address);
+        frame1.add(new JLabel("Enter category - "));    frame1.add(category);
+        frame1.add(new JLabel("Enter SGPA1 - "));       frame1.add(gpa1);
+        frame1.add(new JLabel("Enter SGPA2 - "));       frame1.add(gpa2);
+        frame1.add(new JLabel("Enter SGPA3 - "));       frame1.add(gpa3);
+        frame1.add(new JLabel("Enter SGPA4 - "));       frame1.add(gpa4);
+        frame1.add(new JLabel("CGPA computed - "));     frame1.add(cgpa);
 
-        //adding labels and corresponding textfields
-        frame1.add(name1);      frame1.add(name);
-        frame1.add(age1);       frame1.add(age);
-        frame1.add(address1);   frame1.add(address);
-        frame1.add(usn1);       frame1.add(usn);
-        frame1.add(category1);  frame1.add(category);
-        frame1.add(sgpa1);      frame1.add(gpa1);
-        frame1.add(sgpa2);      frame1.add(gpa2);
-        frame1.add(sgpa3);      frame1.add(gpa3);
-        frame1.add(sgpa4);      frame1.add(gpa4);
-        frame1.add(cgpa1);      frame1.add(cgpa);
-
-        frame1.add(compute); frame1.add(done); frame1.add(complete);
-        done.setVisible(false); complete.setVisible(false);
+        frame1.add(compute); frame1.add(done);
+        frame1.add(complete);
+        done.setVisible(false);
 
         frame2.add(detailsArea);
 
         compute.addActionListener(this);
         complete.addActionListener(this);
         done.addActionListener(this);
-
     }
 
     public void actionPerformed(ActionEvent e) {
-        double g1 = Double.parseDouble(gpa1.getText()); //textfield.getText()
-        double g2 = Double.parseDouble(gpa2.getText());
-        double g3 = Double.parseDouble(gpa3.getText());
-        double g4 = Double.parseDouble(gpa4.getText());
-
-        if (e.getSource()==compute){
-            if (g1>10 || g2>10 || g3>10 || g4 >10){
-                JOptionPane.showMessageDialog(null, "Enter correct SGPA values.");
-            }else {
-                double totalCGPA = (g1 + g2 + g3 + g4) / 4;
-                cgpa.setText("CGPA is : " + totalCGPA);         //textfield.setText()
+        double g1, g2, g3, g4;
+        try {
+            g1 = Double.parseDouble(gpa1.getText());
+            g2 = Double.parseDouble(gpa2.getText());
+            g3 = Double.parseDouble(gpa3.getText());
+            g4 = Double.parseDouble(gpa4.getText());
+            if (g1 > 10 || g2 > 10 || g3 > 10 || g4 > 10) {
+                JOptionPane.showMessageDialog(null, "Enter SGPA values less than or equal to 10.");
             }
-            done.setVisible(true); complete.setVisible(true);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Enter valid values (numeric and non-empty).");
+            return;
         }
 
-        else if (e.getSource() == done){
+        if (e.getSource() == compute) {
+            totalCGPA = (g1 + g2 + g3 + g4) / 4;
+            cgpa.setText("CGPA is : " + totalCGPA);
+            done.setVisible(true);
+            compute.setVisible(false);
+        }
+
+        else if (e.getSource() == done) {
             String n = name.getText();
-            String a = address.getText();
             String u = usn.getText();
-            String c = category.getText();
-            int x = Integer.parseInt(age.getText());
-            if (x<18){
-                JOptionPane.showMessageDialog(null,"Enter correct age. ");
-            }else{
-                Student s = new Student(n,u,a,c,x,g1,g2,g3,g4);
-                list.add(s);
+            String a = address.getText();
+            String c = (String) category.getSelectedItem();
+            if (n.isEmpty() || u.isEmpty() || a.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please fill all fields.");
             }
+            int x = Integer.parseInt(age.getText());
+            if (x < 15) {
+                JOptionPane.showMessageDialog(null, "Enter correct age (must be 15 or older).");
+            } else {
+                Student s = new Student(n, u, x, a, c, totalCGPA);
+                list.add(s);
+                JOptionPane.showMessageDialog(null, "Student record added.");
+            }
+            done.setVisible(false);
+            compute.setVisible(true);
         }
 
-        else if (e.getSource()==complete){
+        else if (e.getSource() == complete) {
             detailsArea.setText("");
-            for (Student stud : list){
-                detailsArea.append(stud + "\n");
+            for (Student s : list) {
+                detailsArea.append(s + "\n");
             }
         }
 
     }
 
     public static void main(String[] args) {
-        Main m = new Main();
+        new Main();
         frame1.setVisible(true);
-        frame1.setSize(300,400);
-        frame1.setLayout(new GridLayout(13,1));
+        frame1.setSize(350, 500);
+        frame1.setLayout(new GridLayout(14, 2));
         frame2.setVisible(true);
-        frame2.setSize(300,400);
+        frame2.setSize(350, 400);
     }
-
-
 }

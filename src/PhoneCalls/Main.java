@@ -7,53 +7,65 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        List<Contact> contacts = new ArrayList<>();
+        List<Contact> contacts = new LinkedList<>();
         List<MissedCall> missedCalls = new ArrayList<>();
 
         contacts.add(new Contact("name 1", 9980967252L));
         contacts.add(new Contact("name 2", 8756285167L));
-        System.out.println("Contacts --> " + contacts);
 
         while (true) {
-            System.out.println("Enter choice - ");
-            System.out.println("1. Add missed call\n 2.List the missed calls : ");
+            System.out.println("\nEnter choice - ");
+            System.out.println("1.Add missed call\n2.Missed calls\n3.Display contacts list/missed calls list");
             int choice = sc.nextInt();
+
             switch (choice) {
                 case 1:
                     System.out.println("Enter the number - ");
                     Long missedCallNumber = sc.nextLong();
-                    String name = "";
+                    String name = "Private Caller";
                     for (Contact c : contacts) {
                         Long num = c.number;
                         if (num.equals(missedCallNumber)) {
                             name = c.name;
                             break;
-                        }else {
-                            name = "Private caller";
                         }
                     }
-                    if (missedCalls.size() < 3){
-                        missedCalls.add(new MissedCall(LocalTime.now(), name, missedCallNumber));
+                    MissedCall mc = new MissedCall(LocalTime.now(), name, missedCallNumber);
+                    if (missedCalls.size() < 5){
+                        missedCalls.add(mc);
                     }else{
                         MissedCall rem = missedCalls.remove(0);
-                        System.out.println("Removed number : " + rem);
-                        missedCalls.add(new MissedCall(LocalTime.now(), name, missedCallNumber));
+                        System.out.println("Removed call : " + rem);
+                        missedCalls.add(mc);
                     }
-                    System.out.println("Missed calls are : " + missedCalls);
                     break;
 
                 case 2:
-                    System.out.println("Total missed calls : " + missedCalls.size());
-                    System.out.println("Missed Calls are - " + missedCalls);
                     List<MissedCall> delCallList = new ArrayList<>();
                     for (MissedCall m : missedCalls){
-                        System.out.println("Do u want to delete the missed call from " + m.number + " ? ");
-                        System.out.println("Enter '1' to delete");
+                        System.out.println("Do u want to view details or delete the missed call from " + m.number + " ? ");
+                        System.out.println("Enter '0' to view details or '1' to delete");
                         int val = sc.nextInt();
-                        if (val==1) delCallList.add(m);
+                        if (val==0) {
+                            System.out.println("Missed call details - " + m);
+                        } else if (val==1) {
+                            delCallList.add(m);
+                        }else {
+                            System.out.println("Please enter valid choice! (0 or 1)");
+                        }
                     }
                     missedCalls.removeAll(delCallList);
-                    System.out.println("Remaining missed calls : " + missedCalls);
+                    break;
+
+                case 3:
+                    System.out.println("Total contacts : " + contacts.size());
+                    System.out.println("Contacts are - " + contacts);
+                    System.out.println("Total missed calls : " + missedCalls.size());
+                    System.out.println("Missed Calls are - " + missedCalls);
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
                     break;
             }
 

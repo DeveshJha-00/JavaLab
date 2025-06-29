@@ -15,20 +15,11 @@ public class StringProcessor implements StringManipulator{
         return new String(charArray);
     }
 
-    public boolean isPalin(String ip) {
-        String reversed = reverse(ip);
-        return ip.equalsIgnoreCase(reversed);
-    }
-
     public String toUpperCase(String ip) {
         return ip.toUpperCase();
     }
 
-    public String toLowerCase(String ip) {
-        return ip.toLowerCase();
-    }
-
-    public String concati(String ip1, String ip2) {
+    public String concatenate(String ip1, String ip2) {
         return ip1.concat(ip2);
     }
 

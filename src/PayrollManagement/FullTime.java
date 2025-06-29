@@ -1,22 +1,13 @@
 package PayrollManagement;
 
-import java.util.Scanner;
-
-public class FullTime extends Employee {
-    Scanner sc = new Scanner(System.in);
-    public double basic, hra, da;
-
-    public FullTime() {
-        super("Kavya", 30, "Programmer");
-        System.out.println("Enter basic, HRA and DA pay - ");
-        basic = sc.nextDouble();
-        hra = sc.nextDouble();
-        da = sc.nextDouble();
+public class FullTime extends Employee implements Payable {
+    public FullTime(String name, int age, double monthlySalary) {
+        super(name, age, monthlySalary, "Full-Time");
     }
 
+    @Override
     public void calculate() {
-        salary = basic + (hra * basic) + (da * basic);
-        System.out.println("Salary of full time employee = " + salary);
+        // Salary is already fixed monthly
+        System.out.println(name + "'s Full-Time Monthly Salary: " + salary);
     }
 }
-

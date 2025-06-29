@@ -1,21 +1,16 @@
 package PayrollManagement;
 
-public class Employee implements Payable {
-    String name, designation;
-    int age;
-    double salary;
+public abstract class Employee implements Payable {
+     String name;
+     int age;
+     double salary;
+     String designation;
 
-    public Employee(String a, int b, String c) {
-        name = a;
-        age = b;
-        designation = c;
-    }
-
-    public void calculate() {
-        salary = 0;
+    public Employee(String name, int age, double salary, String designation) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+        this.designation = designation;
     }
 
 }
-
-
-

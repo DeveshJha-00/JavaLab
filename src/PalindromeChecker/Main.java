@@ -4,16 +4,16 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void validateInput(String str) throws InvalidInputException, ShortStringException {
+    public static void validateInput(String str) throws InvalidInputException, LongStringException {
         if (!str.matches("[a-zA-Z]+")){
             throw new InvalidInputException("Input must contain only alphabetic characters");
         }
-        if (str.length() < 3) {
-            throw new ShortStringException("Input must be at least 3 characters long");
+        if (str.length() > 5) {
+            throw new LongStringException("Input is more than 5 characters long");
         }
+
         StringBuffer org = new StringBuffer(str);
-        StringBuffer rev = new StringBuffer(str).reverse();
-        if (org.toString().equalsIgnoreCase(rev.toString())){
+        if (org.toString().equalsIgnoreCase(org.reverse().toString())){
             System.out.println("Palindrome");
         }else{
             System.out.println("Not a Palindrome");
@@ -27,7 +27,7 @@ public class Main {
         String str = sc.nextLine();
         try{
             validateInput(str);
-        } catch (InvalidInputException | ShortStringException e) {
+        } catch (InvalidInputException | LongStringException e) {
             System.out.println(e.getMessage());
         }
     }

@@ -2,25 +2,29 @@ package Queues;
 
 public class MyQueue {
     int size,front,rear;
-    int[] arr;
+    String[] arr;
+
     public MyQueue(int n) {
         this.front=0;
         this.rear=-1;
         this.size=n;
-        arr = new int[n];
+        arr = new String[n];
     }
-    public void push(int ele) throws QueueOverflowError {
+
+    public void enqueue(String name) throws QueueOverflowError {
         if (rear == size - 1) {
             throw new QueueOverflowError("Queue is full");
         }
-        arr[++rear] = front;
+        arr[++rear] = name;
     }
-    public int pop() throws QueueUnderflowError{
+
+    public String dequeue() throws QueueUnderflowError{
         if (front>rear){
             throw new QueueUnderflowError("Queue is empty");
         }
         return arr[front++];
     }
+
     public void display() throws QueueUnderflowError {
         if (front > rear) {
             throw new QueueUnderflowError("Queue is empty");
@@ -30,4 +34,5 @@ public class MyQueue {
         }
         System.out.println();
     }
+
 }

@@ -16,14 +16,16 @@ public class Main {
         System.out.println("Contains uppercase letters: " + hasUpper);
         System.out.println("Contains lowercase letters: " + hasLower);
         System.out.println("Contains digits: " + hasDigit);
+        System.out.println("Non-special characters: " + (pwd.length()-spec) );
         System.out.println("Special characters: " + spec);
     }
 
     public static String maskPwd(String pwd){
         if (pwd.length()<=2) return pwd;
+
         StringBuilder masked = new StringBuilder();
         masked.append(pwd.charAt(0));
-//        for (int i = 1; i < pwd.length() - 1; i++) {
+//        for (int i = 1; i <= pwd.length() - 2; i++) {
 //            masked.append('*');
 //        }
         masked.append("*".repeat(pwd.length() - 2));
@@ -32,13 +34,13 @@ public class Main {
     }
 
     public static String revs(String pwd){
-        StringBuilder reversed = new StringBuilder(pwd);
-        return reversed.reverse().toString();
+        StringBuilder str = new StringBuilder(pwd);
+        return str.reverse().toString();
     }
 
     public static String randToken(String pwd){
         int num = (int)(Math.random()*1000);
-        String token=String.valueOf("@"+num+"!");
+        String token= "@" + num + "!";
         return pwd+token;
     }
 
@@ -46,7 +48,7 @@ public class Main {
         StringBuilder masked = new StringBuilder();
         for(char ch : str.toCharArray()){
             if ("aeiouAEIOU".indexOf(ch) != -1) {
-                masked.append('*');
+                masked.append('#');
             } else {
                 masked.append(ch);
             }
@@ -58,6 +60,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter password: ");
         String pwd = sc.nextLine();
+
         isSafe(pwd);
         System.out.println("Masked password: " + maskPwd(pwd));
         System.out.println("Reversed password: " + revs(pwd));

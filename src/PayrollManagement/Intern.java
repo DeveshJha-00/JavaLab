@@ -1,19 +1,13 @@
 package PayrollManagement;
 
-import java.util.Scanner;
-
-public class Intern extends Employee {
-    Scanner sc = new Scanner(System.in);
-    public double stipend;
-
-    public Intern() {
-        super("Vanitha", 28, "Assistant");
-        System.out.println("Enter stipend:");
-        stipend = sc.nextDouble();
+public class Intern extends Employee implements Payable {
+    public Intern(String name, int age, double stipend) {
+        super(name, age, stipend, "Intern");
     }
 
+    @Override
     public void calculate() {
-        salary = stipend;
-        System.out.println("Salary of intern = " + salary);
+        // Fixed stipend
+        System.out.println(name + "'s Intern Stipend: " + salary);
     }
 }

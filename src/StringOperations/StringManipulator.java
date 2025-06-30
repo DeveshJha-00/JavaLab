@@ -7,3 +7,4 @@ public interface StringManipulator {
      int countVowels(String ip);
      int wordCount(String ip);
 }
+

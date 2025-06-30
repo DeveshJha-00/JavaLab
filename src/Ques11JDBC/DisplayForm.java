@@ -4,13 +4,12 @@ import javax.swing.*;
 import java.sql.*;
 
 public class DisplayForm extends JFrame {
-    JTextArea displayArea;
 
     public DisplayForm() {
         setTitle("Reps with Customers (Credit > 15000)");
         setSize(400, 500);
 
-        displayArea = new JTextArea();
+        JTextArea displayArea = new JTextArea();
         displayArea.setEditable(false);
 
         add(displayArea);

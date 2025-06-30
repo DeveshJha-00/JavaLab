@@ -12,15 +12,18 @@ public class InsertForm extends JFrame implements ActionListener {
 
     public InsertForm() {
         setTitle("Insert Representative and Customer Details");
-        setSize(400, 500);
+        setSize(350, 500);
         setLayout(new GridLayout(14, 2));
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         repNo = new JTextField();       repName = new JTextField();
         repState = new JTextField();    repComm = new JTextField();
         repRate = new JTextField();     custNo = new JTextField();
         custName = new JTextField();    custState = new JTextField();
         creditLimit = new JTextField(); custRepNo = new JTextField();
+        insertBtn = new JButton("Insert");
+        showBtn = new JButton("Show Reps (Credit > 15000)");
+
         // Rep fields
         add(new JLabel("Rep No:"));           add(repNo);
         add(new JLabel("Rep Name:"));         add(repName);
@@ -35,8 +38,6 @@ public class InsertForm extends JFrame implements ActionListener {
         add(new JLabel("Credit Limit:"));     add(creditLimit);
         add(new JLabel("Rep No (FK):"));      add(custRepNo);
 
-        insertBtn = new JButton("Insert");
-        showBtn = new JButton("Show Reps (Credit > 15000)");
         add(insertBtn); add(showBtn);
 
         insertBtn.addActionListener(this);

@@ -15,7 +15,7 @@ public class Main {
 
         while (true) {
             System.out.println("\nEnter choice - ");
-            System.out.println("1.Add missed call\n2.Missed calls\n3.Display contacts list/missed calls list");
+            System.out.println("1.Add missed call\n2.Manage missed calls\n3.Display");
             int choice = sc.nextInt();
 
             switch (choice) {
@@ -50,8 +50,6 @@ public class Main {
                             System.out.println("Missed call details - " + m);
                         } else if (val==1) {
                             delCallList.add(m);
-                        }else {
-                            System.out.println("Please enter valid choice! (0 or 1)");
                         }
                     }
                     missedCalls.removeAll(delCallList);

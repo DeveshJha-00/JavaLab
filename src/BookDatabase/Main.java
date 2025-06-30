@@ -2,7 +2,7 @@ package BookDatabase;
 
 import java.util.*;
 
-public class BookManager {
+public class Main {
     public static List<Book> books = new ArrayList<>();
     public static List<Book> sortedBooks = new ArrayList<>();
     public static Map<Integer,Book> map = new HashMap<>();

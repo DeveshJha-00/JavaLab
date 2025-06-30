@@ -25,11 +25,13 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter string : ");
         String str = sc.nextLine();
+
         try{
             validateInput(str);
         } catch (InvalidInputException | LongStringException e) {
             System.out.println(e.getMessage());
         }
+
     }
 
 }

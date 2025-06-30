@@ -50,15 +50,14 @@ public class Main extends JFrame implements ActionListener {
         mobileField = new JTextField();
         itemIdField = new JTextField();
         quantityField = new JTextField();
+        itemNameLabel = new JLabel("-");
+        totalCostLabel = new JLabel("-");
         // Adding components
-        add(new JLabel("Enter Mobile Number:"));     add(mobileField);
-        add(new JLabel("Enter Item ID:"));           add(itemIdField);
-        add(new JLabel("Enter Quantity:"));          add(quantityField);
-
-        add(new JLabel("Item Name:"));
-        itemNameLabel = new JLabel("-");    add(itemNameLabel);
-        add(new JLabel("Total Cost:"));
-        totalCostLabel = new JLabel("-");   add(totalCostLabel);
+        add(new JLabel("Enter Mobile Number:"));  add(mobileField);
+        add(new JLabel("Enter Item ID:"));        add(itemIdField);
+        add(new JLabel("Enter Quantity:"));       add(quantityField);
+        add(new JLabel("Item Name:"));            add(itemNameLabel);
+        add(new JLabel("Total Cost:"));           add(totalCostLabel);
 
         fetchBtn = new JButton("Fetch & Compute");
         discountBtn = new JButton("Apply Discount");
@@ -135,6 +134,7 @@ public class Main extends JFrame implements ActionListener {
             String msg = "Customer ID: " + currentCustomer.id + "\n" +
                     "Mobile: " + currentCustomer.mobile + "\n" +
                     "Item: " + currentItem.itemName + "\n" +
+                    "Quantity: " + quantityField.getText() + "\n" +
                     "Total Cost (after discount): Rs. " + (totalCost);
 
             JOptionPane.showMessageDialog(this, msg, "Purchase Summary", JOptionPane.INFORMATION_MESSAGE);

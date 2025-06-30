@@ -1,6 +1,6 @@
 package PayrollManagement;
 
-public class Intern extends Employee implements Payable {
+public class Intern extends Employee  {
     public Intern(String name, int age, double stipend) {
         super(name, age, stipend, "Intern");
     }

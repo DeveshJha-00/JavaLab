@@ -1,6 +1,6 @@
 package PayrollManagement;
 
-public class PartTime extends Employee implements Payable {
+public class PartTime extends Employee  {
     private int hoursWorked;
     private double hourlyRate;
 

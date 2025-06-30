@@ -38,9 +38,7 @@ public class Main implements ActionListener {
         gpa3 = new JTextField();    gpa4 = new JTextField();
         cgpa = new JTextField();
         cgpa.setEditable(false);
-
         detailsArea = new JTextArea(); //to display the collection
-
         compute = new JButton("COMPUTE");
         done = new JButton("DONE");
         complete = new JButton("COMPLETE");
@@ -79,7 +77,7 @@ public class Main implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Enter SGPA values less than or equal to 10.");
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Enter valid values (numeric and non-empty).");
+            JOptionPane.showMessageDialog(null, "SGPA cant be empty or non-numeric.");
             return;
         }
 
@@ -121,10 +119,12 @@ public class Main implements ActionListener {
 
     public static void main(String[] args) {
         new Main();
-        frame1.setVisible(true);
+        frame1.setTitle("Student Information Form");
         frame1.setSize(350, 500);
         frame1.setLayout(new GridLayout(14, 2));
+        frame1.setVisible(true);
+        frame2.setTitle("Student Details");
+        frame2.setSize(350, 500);
         frame2.setVisible(true);
-        frame2.setSize(350, 400);
     }
 }

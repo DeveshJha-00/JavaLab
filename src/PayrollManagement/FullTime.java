@@ -1,6 +1,6 @@
 package PayrollManagement;
 
-public class FullTime extends Employee implements Payable {
+public class FullTime extends Employee  {
     public FullTime(String name, int age, double monthlySalary) {
         super(name, age, monthlySalary, "Full-Time");
     }
